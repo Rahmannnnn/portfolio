@@ -13,6 +13,7 @@ import { CustomEase } from 'gsap/all';
 import Image from 'next/image';
 import arrowBack from '@/icons/arrow-back.svg';
 import { POSITIONS } from '@/constants/POSITIONS';
+import { PRELOADER_DURATION } from '@/constants/PRELOADER_DURATION';
 
 const Navigation = () => {
   const {
@@ -54,6 +55,7 @@ const Navigation = () => {
       gsap.to('.title', {
         duration: 2,
         x: 0,
+        delay: PRELOADER_DURATION,
         ease: 'power4.inOut',
         onComplete: () => {
           gsap.to('.content', {
@@ -63,7 +65,7 @@ const Navigation = () => {
       });
 
       gsap.to('.rahman', {
-        delay: 2,
+        delay: PRELOADER_DURATION + 2,
         duration: 0.5,
         ease: 'power4.inOut',
         top: '100%',
@@ -80,7 +82,7 @@ const Navigation = () => {
       gsap.to('.right', {
         opacity: 1,
         duration: 2,
-        delay: 2.5,
+        delay: PRELOADER_DURATION + 3,
         ease: 'power4.inOut',
       });
     },
@@ -220,7 +222,16 @@ const Navigation = () => {
       {cloneElement}
 
       <div className={`content ${styles.navigation__content}`}>
-        <div className={`left ${styles.navigation__content__left}`}>
+        <div
+          onClick={() => {
+            if (currentPage === PAGE.HOME) return;
+            handleBack();
+          }}
+          style={{
+            cursor: currentPage === PAGE.DETAIL ? 'pointer' : 'default',
+          }}
+          className={`left ${styles.navigation__content__left}`}
+        >
           <h1 className="title">arif</h1>
           <h1 className="title rahman">rahman</h1>
         </div>
@@ -258,7 +269,15 @@ const Navigation = () => {
         className={`about__page ${styles.navigation__about}`}
       >
         <div className={`${styles.navigation__about__header}`}>
-          <div className={`${styles.navigation__about__header__left}`}>
+          <div
+            onClick={() => {
+              setShowModal(false);
+            }}
+            style={{
+              cursor: 'pointer',
+            }}
+            className={`${styles.navigation__about__header__left}`}
+          >
             <h1 className="title">arif</h1>
             <h1 className="title rahman">rahman</h1>
           </div>

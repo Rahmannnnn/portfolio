@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import styles from './index.module.scss';
 import { FiArrowUpRight } from 'react-icons/fi';
 import gsap from 'gsap';
+import { PRELOADER_DURATION } from '@/constants/PRELOADER_DURATION';
 
 const Footer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,21 +26,21 @@ const Footer = () => {
       gsap.to('.left', {
         opacity: 1,
         duration: 2,
-        delay: 2.5,
+        delay: PRELOADER_DURATION + 3,
         ease: 'power4.inOut',
       });
 
       gsap.to('.mid', {
         opacity: 1,
         duration: 2,
-        delay: 2.5,
+        delay: PRELOADER_DURATION + 3,
         ease: 'power4.inOut',
       });
 
       gsap.to('.right', {
         opacity: 1,
         duration: 2,
-        delay: 2.5,
+        delay: PRELOADER_DURATION + 3,
         ease: 'power4.inOut',
         onComplete: () => {
           gsap.to('.content', {

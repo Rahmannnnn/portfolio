@@ -56,7 +56,7 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
           })
           .to(imageRef.current, {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.3,
             ease: 'power4.inOut',
           });
       }

@@ -4,9 +4,20 @@ import Footer from '@/components/Footer';
 import { GSAP } from '@/components/GSAP';
 import Navigation from '@/components/Navigation';
 import { NavigationProvider } from '@/contexts/NavigationContext';
-import { TransitionProvider } from '@/contexts/TransitionContext';
-import { useEffect, useRef } from 'react';
+import {
+  TransitionContext,
+  TransitionProvider,
+} from '@/contexts/TransitionContext';
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import styles from './layout.module.scss';
+import Preloader from '@/components/Preloader';
+import gsap from 'gsap';
 
 export default function RootLayout({
   children,
@@ -42,6 +53,23 @@ export default function RootLayout({
     return () => window.removeEventListener('mousemove', updatePosition);
   }, []);
 
+  const [loaderFinished, setLoaderFinished] = useState(false);
+  const [timeline, setTimeline] = useState<GSAPTimeline>(gsap.timeline());
+
+  useLayoutEffect(() => {
+    const context = gsap.context(() => {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setLoaderFinished(true);
+        },
+      });
+
+      setTimeline(tl);
+    });
+
+    return () => context.revert();
+  }, []);
+
   return (
     <html lang="en">
       <TransitionProvider>
@@ -49,7 +77,8 @@ export default function RootLayout({
           <body>
             <div ref={dotRef} className={`${styles.cursor__dot}`}></div>
             <Navigation />
-            {children}
+            {!loaderFinished ? <Preloader timeline={timeline} /> : children}
+            {/* <Preloader timeline={timeline} /> */}
             <Footer />
             <GSAP scrollTrigger={true} />
           </body>
