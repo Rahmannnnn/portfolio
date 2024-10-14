@@ -25,6 +25,9 @@ body {
   font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 * {

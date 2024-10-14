@@ -15,9 +15,11 @@ import {
 import { PROJECTS } from '@/constants/PROJECTS';
 import { POSITIONS } from '@/constants/POSITIONS';
 import { TransitionContext } from '@/contexts/TransitionContext';
+import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { toPage } = useContext(NavigationContext);
 
   const [projectRefs] = useState<RefObject<HTMLDivElement>[]>(() =>
     Array(PROJECTS.length)
@@ -140,6 +142,10 @@ export default function Home() {
     }
   };
 
+  const handleDetailPage = (s: string) => {
+    toPage(PAGE.DETAIL, s);
+  };
+
   return (
     <Wrapper>
       <div className={styles.home} ref={containerRef}>
@@ -153,6 +159,7 @@ export default function Home() {
                 onMouseMove={(e) => handleTitleMousemove(e, title)}
                 onMouseEnter={(e) => handleTitleMousemove(e, title)}
                 onMouseLeave={handleTitleMouseend}
+                onClick={() => handleDetailPage(project_slug)}
                 className={`home__gallery__image ${styles.home__gallery__image}`}
                 style={{
                   left: `${POSITIONS[index].left}%`,

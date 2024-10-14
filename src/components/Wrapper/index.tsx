@@ -1,6 +1,9 @@
-import { ReactNode } from 'react';
+'use client';
+
+import { ReactNode, useContext, useEffect } from 'react';
 import { Lenis } from '../Lenis';
 import { LenisOptions } from 'lenis';
+import { NavigationContext } from '@/contexts/NavigationContext';
 
 type Props = {
   children: ReactNode;
@@ -13,6 +16,11 @@ export function Wrapper({
     lerp: 0.075,
   },
 }: Props) {
+  const { getCurrentPage } = useContext(NavigationContext);
+  useEffect(() => {
+    getCurrentPage();
+  }, []);
+
   return (
     <>
       {lenis && <Lenis root options={lenis} />}

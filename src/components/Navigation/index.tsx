@@ -1,14 +1,21 @@
 'use client';
 
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useLayoutEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { NavigationContext } from '@/contexts/NavigationContext';
+import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
 import { CustomEase } from 'gsap/all';
+import Image from 'next/image';
+import arrowBack from '@/icons/arrow-back.svg';
 
 const Navigation = () => {
-  gsap.registerPlugin(CustomEase);
+  const { currentPage, toPage } = useContext(NavigationContext);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(CustomEase);
+  }, []);
+
   CustomEase.create(
     'hop',
     'M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1'
@@ -93,6 +100,11 @@ const Navigation = () => {
       dependencies: [showModal],
     }
   );
+
+  const handleBack = () => {
+    toPage(PAGE.HOME, '/');
+  };
+
   return (
     <div className={styles.navigation} ref={containerRef}>
       <div className={`content ${styles.navigation__content}`}>
@@ -101,15 +113,31 @@ const Navigation = () => {
           <h1 className="title rahman">rahman</h1>
         </div>
         <div className={`right ${styles.navigation__content__right}`}>
-          <p className="menu projects">Projects</p>
-          <p
-            className="menu about"
-            onClick={() => {
-              setShowModal(true);
-            }}
-          >
-            About
-          </p>
+          {currentPage === PAGE.HOME && (
+            <>
+              <p className="menu projects">Projects</p>
+              <p
+                className="menu about"
+                onClick={() => {
+                  setShowModal(true);
+                }}
+              >
+                About
+              </p>
+            </>
+          )}
+
+          {currentPage === PAGE.DETAIL && (
+            <div className={`${styles.back}`} onClick={handleBack}>
+              <div className={styles.back__images}>
+                <div className={styles.back__images__move}>
+                  <Image src={arrowBack} alt="" />
+                  <Image src={arrowBack} alt="" />
+                </div>
+              </div>
+              <p>Back</p>
+            </div>
+          )}
         </div>
       </div>
 

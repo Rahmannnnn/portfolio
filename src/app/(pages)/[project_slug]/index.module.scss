@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+  position: relative;
+  padding-top: 50vh;
+
+  &__content {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 2rem;
+    padding-top: 8rem;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include size(md) {
+      gap: 10vw;
+      width: 70vw;
+      padding: 4rem 0;
+      padding-top: 8rem;
+      flex-direction: row;
+    }
+
+    @include size(xxl) {
+      padding-top: 20rem;
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+
+    &__left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-size: 2rem;
+        line-height: 2rem;
+        font-weight: 700;
+
+        @include size(md) {
+          line-height: 5rem;
+          font-size: 5rem;
+        }
+
+        @include size(xxl) {
+          line-height: 12.5rem;
+          font-size: 12.5rem;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        font-weight: 300;
+
+        @include size(md) {
+          font-weight: 400;
+          font-size: 1.4rem;
+        }
+
+        @include size(xxl) {
+          line-height: 6rem;
+          font-size: 5rem;
+        }
+      }
+    }
+
+    &__right {
+      flex: 1;
+
+      @include size(xxl) {
+        flex: 2;
+      }
+
+      p {
+        font-size: 1.2rem;
+        font-weight: 300;
+
+        @include size(md) {
+          font-weight: 400;
+          font-size: 1.4rem;
+        }
+
+        @include size(xxl) {
+          line-height: 5rem;
+          font-size: 4rem;
+          font-weight: 300;
+        }
+      }
+
+      h2 {
+        @include size(xxl) {
+          line-height: 3rem;
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}
+
+.year {
+  overflow: hidden;
+}
