@@ -14,6 +14,12 @@ const Layout = ({
         <meta name="application-name" content="Next.js" />
         <meta name="author" content="Arif Rahman Amrul Ghani" />
         <link rel="author" href="https://nextjs.org" />
+        <link
+          rel="icon"
+          href="/static/favicon.png"
+          type="image/png"
+          sizes="16x16"
+        />
         <meta
           name="keywords"
           content="Frontend Engineer,UI/UX Designer,Next.js,React,JavaScript"

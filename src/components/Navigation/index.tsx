@@ -186,6 +186,7 @@ const Navigation = () => {
 
       tl.to('.clone__image', cloneImageVars)
         .to('.clone', cloneVars, '<')
+        .to('.clone', { duration: 0.5 })
         .then(() => {
           setCloneElement(<></>);
           if (c === PAGE.HOME) {

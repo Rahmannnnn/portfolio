@@ -1,1 +1,1 @@
-export const PRELOADER_DURATION = 12.5;
+export const PRELOADER_DURATION = 10.5;

@@ -78,7 +78,6 @@ export default function RootLayout({
             <div ref={dotRef} className={`${styles.cursor__dot}`}></div>
             <Navigation />
             {!loaderFinished ? <Preloader timeline={timeline} /> : children}
-            {/* <Preloader timeline={timeline} /> */}
             <Footer />
             <GSAP scrollTrigger={true} />
           </body>
