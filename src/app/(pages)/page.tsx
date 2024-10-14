@@ -1,5 +1,10 @@
-import styles from "./page.module.scss";
+import { Wrapper } from '@/components/Wrapper';
+import styles from './page.module.scss';
 
 export default function Home() {
-  return <div className={styles.home}>Home</div>;
+  return (
+    <Wrapper>
+      <div className={styles.home}>Home</div>;
+    </Wrapper>
+  );
 }
