@@ -211,6 +211,10 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 1);
+  }, []);
+
   return (
     <Wrapper>
       <div className={styles.home} ref={containerRef}>
