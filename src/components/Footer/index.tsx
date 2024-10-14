@@ -11,33 +11,41 @@ const Footer = () => {
   useGSAP(
     () => {
       gsap.set('.left', {
-        x: -1000,
+        opacity: 0,
       });
 
       gsap.set('.mid', {
-        y: 1000,
+        opacity: 0,
       });
 
       gsap.set('.right', {
-        x: 1000,
+        opacity: 0,
       });
 
       gsap.to('.left', {
+        opacity: 1,
         duration: 2,
-        x: 0,
+        delay: 2.5,
         ease: 'power4.inOut',
       });
 
       gsap.to('.mid', {
+        opacity: 1,
         duration: 2,
-        y: 0,
+        delay: 2.5,
         ease: 'power4.inOut',
       });
 
       gsap.to('.right', {
+        opacity: 1,
         duration: 2,
-        x: 0,
+        delay: 2.5,
         ease: 'power4.inOut',
+        onComplete: () => {
+          gsap.to('.content', {
+            overflow: 'visible',
+          });
+        },
       });
     },
     { scope: containerRef }
@@ -45,7 +53,7 @@ const Footer = () => {
 
   return (
     <div className={styles.footer} ref={containerRef}>
-      <div className={styles.footer__content}>
+      <div className={`content ${styles.footer__content}`}>
         <div className={`left ${styles.footer__content__left}`}>
           <a href="https://read.cv/arifrahman" target="_blank">
             read.cv

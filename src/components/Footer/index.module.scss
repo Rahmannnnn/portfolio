@@ -8,12 +8,13 @@
   &__content {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
-    padding-top: 0;
+    margin: 2rem;
+    overflow: hidden;
+    margin-top: 0;
 
     @include size(md) {
-      padding: 4rem;
-      padding-top: 0;
+      margin: 4rem;
+      margin-top: 0;
     }
   }
 
