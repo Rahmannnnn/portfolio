@@ -24,9 +24,11 @@
 
       h1 {
         font-weight: 400;
-        line-height: 2rem;
+        font-size: 1.6rem;
+        line-height: 1.4rem;
 
         @include size(md) {
+          line-height: 2rem;
           font-size: 2.4rem;
         }
       }
@@ -111,9 +113,11 @@
 
         h1 {
           font-weight: 400;
-          line-height: 2rem;
+          font-size: 1.6rem;
+          line-height: 1.4rem;
 
           @include size(md) {
+            line-height: 2rem;
             font-size: 2.4rem;
           }
         }
