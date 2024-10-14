@@ -40,7 +40,7 @@ const Preloader = ({ timeline }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
-      let delay = Math.floor(Math.random() * 1000) + 75;
+      let delay = Math.floor(Math.random() * 750) + 50;
       let timer = setInterval(updateCounter, delay);
       if (counter == 100) {
         return () => clearInterval(timer);
@@ -72,7 +72,7 @@ const Preloader = ({ timeline }: Props) => {
 
       timeline.add(
         gsap.to('.preloader-overlay-text', {
-          left: '-100%',
+          x: '-1000',
           duration: 3,
           ease: 'sine.inOut',
         })
