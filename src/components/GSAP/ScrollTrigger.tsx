@@ -8,7 +8,6 @@ import { useEffect, useLayoutEffect } from 'react';
 export function ScrollTriggerConfig() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.normalizeScroll(true);
     ScrollTrigger.clearScrollMemory('manual');
     ScrollTrigger.defaults({
       markers: process.env.NODE_ENV === 'development',

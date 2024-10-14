@@ -1,9 +1,6 @@
-'use client';
-
+import { ReactNode } from 'react';
+import { Lenis } from '../Lenis';
 import { LenisOptions } from 'lenis';
-import { ReactNode, useContext, useEffect, useRef } from 'react';
-import { Lenis } from '@/libs/lenis';
-import styles from './index.module.scss';
 
 type Props = {
   children: ReactNode;
@@ -13,15 +10,13 @@ type Props = {
 export function Wrapper({
   children,
   lenis = {
-    lerp: 0.125,
+    lerp: 0.075,
   },
 }: Props) {
   return (
     <>
       {lenis && <Lenis root options={lenis} />}
-      <main role="main" className={styles.main}>
-        {children}
-      </main>
+      <main role="main">{children}</main>
     </>
   );
 }
