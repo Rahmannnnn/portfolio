@@ -3,6 +3,7 @@ import { IProjectDetail } from '@/constants/PROJECT_DETAIL';
 import React, {
   createRef,
   RefObject,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -10,6 +11,8 @@ import React, {
 import styles from './index.module.scss';
 
 import * as THREE from 'three';
+import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
+import { PROJECTS } from '@/constants/PROJECTS';
 
 let current = 0;
 let target = 0;
@@ -42,7 +45,74 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     }
   };
 
+  const { clone, setClone, createCloneElement, cloneBack, setCloneBack } =
+    useContext(NavigationContext);
+  const getCloneBack = () => {
+    if (cloneBack.index === -1 || !cloneBack.from.source) {
+      // get index
+      let index = PROJECTS.findIndex(
+        (item) => item.project_slug === project_slug
+      );
+
+      // get from
+      if (index !== -1) {
+        const ref = imageRefs[0];
+        if (ref.current) {
+          const { width, height, top, left } =
+            ref.current.getBoundingClientRect();
+          const { src } = ref.current;
+
+          setCloneBack({
+            ...cloneBack,
+            index,
+            from: {
+              width,
+              height,
+              top,
+              left,
+              source: src,
+            },
+          });
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (imageRefs[0]) {
+      if (imageRefs[0].current) {
+        const { top, left } = imageRefs[0].current.getBoundingClientRect();
+        const { src: source, clientHeight, clientWidth } = imageRefs[0].current;
+
+        setClone({
+          ...clone,
+          to: {
+            source,
+            top,
+            left,
+            width: clientWidth,
+            height: clientHeight,
+          },
+        });
+      }
+    }
+  }, [imageRefs[0].current]);
+
+  useEffect(() => {
+    getCloneBack();
+
+    window.addEventListener('popstate', () => {
+      const { from } = cloneBack;
+      if (from.source) {
+        createCloneElement(PAGE.DETAIL);
+      }
+    });
+
+    return () => window.removeEventListener('popstate', () => {});
+  }, [cloneBack]);
+
   const init = () => {
+    getCloneBack();
     if (scrollableRef.current) {
       document.body.style.height = `calc(${
         scrollableRef.current.getBoundingClientRect().height

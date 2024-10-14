@@ -1,16 +1,34 @@
 'use client';
 
-import React, { useContext, useLayoutEffect, useRef } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
+import {
+  INITIAL_CLONE,
+  NavigationContext,
+  PAGE,
+} from '@/contexts/NavigationContext';
 import { CustomEase } from 'gsap/all';
 import Image from 'next/image';
 import arrowBack from '@/icons/arrow-back.svg';
+import { POSITIONS } from '@/constants/POSITIONS';
 
 const Navigation = () => {
-  const { currentPage, toPage } = useContext(NavigationContext);
+  const {
+    currentPage,
+    toPage,
+
+    cloneElement,
+    setCloneElement,
+    createCloneElement,
+
+    clone,
+    setClone,
+
+    cloneBack,
+    setCloneBack,
+  } = useContext(NavigationContext);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(CustomEase);
@@ -102,11 +120,105 @@ const Navigation = () => {
   );
 
   const handleBack = () => {
+    const { from } = cloneBack;
+    if (from.source) {
+      createCloneElement(PAGE.DETAIL);
+    }
+
     toPage(PAGE.HOME, '/');
   };
 
+  const { contextSafe } = useGSAP({ scope: containerRef });
+  const handleGSAPClone = contextSafe((c: PAGE) => {
+    const to = c === PAGE.HOME ? clone.to : cloneBack.to;
+    const index = c === PAGE.HOME ? clone.index : cloneBack.index;
+
+    const { width, height, source } = to;
+    if (source) {
+      let tl = gsap.timeline();
+      let cloneVars: GSAPTweenVars = {};
+      let cloneImageVars: GSAPTweenVars = {};
+
+      switch (c) {
+        case PAGE.HOME:
+          cloneVars = {
+            duration: 2,
+            width: '100vw',
+            height,
+            top: '50vh',
+            left: 0,
+            ease: 'power4.inOut',
+          };
+
+          cloneImageVars = {
+            duration: 2,
+            width,
+            height,
+            objectFit: 'cover',
+            ease: 'power4.inOut',
+          };
+          break;
+
+        case PAGE.DETAIL:
+          cloneVars = {
+            position: 'fixed',
+            duration: 4.75,
+            width: '75px',
+            height: '100px',
+            background: 'rgba(0,0,0,0.4)',
+            margin: '20px',
+            top: `${POSITIONS[index].top}%`,
+            left: `${POSITIONS[index].left}%`,
+            ease: 'power4.inOut',
+          };
+
+          cloneImageVars = {
+            duration: 2,
+            objectFit: 'cover',
+            ease: 'power4.inOut',
+            width: '100%',
+            height: '100%',
+          };
+          break;
+      }
+
+      tl.to('.clone__image', cloneImageVars)
+        .to('.clone', cloneVars, '<')
+        .then(() => {
+          setCloneElement(<></>);
+          if (c === PAGE.HOME) {
+            setClone(INITIAL_CLONE);
+          } else {
+            setCloneBack(INITIAL_CLONE);
+          }
+        });
+    }
+  });
+
+  useEffect(() => {
+    if (clone.from.source) {
+      createCloneElement(PAGE.HOME);
+    }
+  }, [clone]);
+
+  useEffect(() => {
+    const { to } = clone;
+    if (to.source && cloneElement !== <></>) {
+      handleGSAPClone(PAGE.HOME);
+    }
+  }, [clone]);
+
+  useEffect(() => {
+    const { to } = cloneBack;
+    if (to.source && cloneElement !== <></>) {
+      handleGSAPClone(PAGE.DETAIL);
+    }
+  }, [cloneBack]);
+
   return (
     <div className={styles.navigation} ref={containerRef}>
+      {cloneElement}
+
       <div className={`content ${styles.navigation__content}`}>
         <div className={`left ${styles.navigation__content__left}`}>
           <h1 className="title">arif</h1>

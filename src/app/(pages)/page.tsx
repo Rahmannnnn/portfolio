@@ -9,6 +9,7 @@ import {
   MouseEvent,
   RefObject,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -18,6 +19,8 @@ import { TransitionContext } from '@/contexts/TransitionContext';
 import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
 
 export default function Home() {
+  const { clone, setClone, cloneBack, setCloneBack } =
+    useContext(NavigationContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const { toPage } = useContext(NavigationContext);
 
@@ -52,9 +55,9 @@ export default function Home() {
   useGSAP(
     () => {
       gsap.set('.home__gallery__image', {
-        top: '45%',
+        top: '50%',
         left: '50%',
-        // opacity: (i) => (i ? '0' : '1'),
+        opacity: (i) => (i === cloneBack.index ? '0' : '1'),
         transform: 'translate(-50%, -50%) scale(0)',
       });
 
@@ -142,9 +145,71 @@ export default function Home() {
     }
   };
 
-  const handleDetailPage = (s: string) => {
+  const handleDetailPage = (index: number, source: string, s: string) => {
+    let item = projectRefs[index].current;
+    if (item) {
+      const { top, left, height, width } = item.getBoundingClientRect();
+      setClone({
+        ...clone,
+        from: {
+          source,
+          top,
+          left,
+          width,
+          height,
+        },
+      });
+    }
+
     toPage(PAGE.DETAIL, s);
   };
+
+  useEffect(() => {
+    document.body.style.height = '100vh';
+  }, []);
+
+  useEffect(() => {
+    const { from, to, index } = clone;
+    if (from.source && to.source && index !== -1) {
+      if (projectRefs[index].current) {
+        const { width, height, top, left } =
+          projectRefs[index].current.getBoundingClientRect();
+        const source = PROJECTS[index].image;
+
+        setClone({
+          ...clone,
+          to: {
+            width,
+            height,
+            top,
+            left,
+            source,
+          },
+        });
+      }
+    }
+  }, [clone]);
+
+  useEffect(() => {
+    if (cloneBack.index !== -1) {
+      const ref = projectRefs[cloneBack.index];
+      if (ref.current) {
+        const { width, height } = ref.current.getBoundingClientRect();
+        const project = PROJECTS[cloneBack.index];
+        const { top, left } = POSITIONS[cloneBack.index];
+        setCloneBack({
+          ...cloneBack,
+          to: {
+            width,
+            height,
+            top,
+            left,
+            source: project.image,
+          },
+        });
+      }
+    }
+  }, []);
 
   return (
     <Wrapper>
@@ -159,7 +224,7 @@ export default function Home() {
                 onMouseMove={(e) => handleTitleMousemove(e, title)}
                 onMouseEnter={(e) => handleTitleMousemove(e, title)}
                 onMouseLeave={handleTitleMouseend}
-                onClick={() => handleDetailPage(project_slug)}
+                onClick={() => handleDetailPage(index, image, project_slug)}
                 className={`home__gallery__image ${styles.home__gallery__image}`}
                 style={{
                   left: `${POSITIONS[index].left}%`,
