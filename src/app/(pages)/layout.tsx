@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import { GSAP } from '@/components/GSAP';
 import Navigation from '@/components/Navigation';
 import { NavigationProvider } from '@/contexts/NavigationContext';
+import { TransitionProvider } from '@/contexts/TransitionContext';
 
 export default function RootLayout({
   children,
@@ -12,14 +13,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <NavigationProvider>
-        <body>
-          <Navigation />
-          {children}
-          <Footer />
-          <GSAP scrollTrigger={true} />
-        </body>
-      </NavigationProvider>
+      <TransitionProvider>
+        <NavigationProvider>
+          <body>
+            <Navigation />
+            {children}
+            <Footer />
+            <GSAP scrollTrigger={true} />
+          </body>
+        </NavigationProvider>
+      </TransitionProvider>
     </html>
   );
 }
