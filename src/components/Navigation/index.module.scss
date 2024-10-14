@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 
   width: 100%;
 
@@ -62,6 +63,86 @@
 
     @include size(md) {
       font-size: 1.3rem;
+    }
+  }
+
+  &__about {
+    overflow-y: scroll;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: var(--foreground);
+    color: var(--background);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 2rem;
+
+    @include size(md) {
+      padding: 4rem;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__header {
+      position: fixed;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      justify-content: space-between;
+
+      padding: 2rem;
+
+      @include size(md) {
+        padding: 4rem;
+      }
+
+      &__left {
+        position: relative;
+        display: flex;
+
+        h1 {
+          font-weight: 400;
+          line-height: 2rem;
+
+          @include size(md) {
+            font-size: 2.4rem;
+          }
+        }
+
+        h1:nth-child(2) {
+          position: absolute;
+          top: 100%;
+          left: 0;
+        }
+      }
+
+      &__right {
+        display: flex;
+        gap: 2rem;
+
+        p:nth-child(1) {
+          opacity: 0.5;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &__content {
+      margin-top: 10rem;
+      background-color: blue;
     }
   }
 }

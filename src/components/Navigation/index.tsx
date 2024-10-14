@@ -1,11 +1,20 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import styles from './index.module.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { NavigationContext } from '@/contexts/NavigationContext';
+import { CustomEase } from 'gsap/all';
 
 const Navigation = () => {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create(
+    'hop',
+    'M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1'
+  );
+
+  const { showModal, setShowModal } = useContext(NavigationContext);
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -52,6 +61,40 @@ const Navigation = () => {
     },
     { scope: containerRef }
   );
+
+  useGSAP(
+    () => {
+      let tl = gsap.timeline({ paused: true });
+
+      if (showModal) {
+        gsap.to('.about__page', {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          ease: 'hop',
+          duration: 1.5,
+          onStart: () => {
+            gsap.set('.about__page', {
+              pointerEvents: 'all',
+            });
+          },
+        });
+      } else {
+        gsap.to('.about__page', {
+          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+          ease: 'hop',
+          duration: 1.5,
+          onComplete: () => {
+            gsap.set('.about__page', {
+              pointerEvents: 'none',
+            });
+          },
+        });
+      }
+    },
+    {
+      scope: containerRef,
+      dependencies: [showModal],
+    }
+  );
   return (
     <div className={styles.navigation} ref={containerRef}>
       <div className={`content ${styles.navigation__content}`}>
@@ -61,7 +104,40 @@ const Navigation = () => {
         </div>
         <div className={`right ${styles.navigation__content__right}`}>
           <p className="menu projects">Projects</p>
-          <p className="menu about">About</p>
+          <p
+            className="menu about"
+            onClick={() => {
+              setShowModal(true);
+            }}
+          >
+            About
+          </p>
+        </div>
+      </div>
+
+      <div
+        data-lenis-prevent
+        className={`about__page ${styles.navigation__about}`}
+      >
+        <div className={`${styles.navigation__about__header}`}>
+          <div className={`${styles.navigation__about__header__left}`}>
+            <h1 className="title">arif</h1>
+            <h1 className="title rahman">rahman</h1>
+          </div>
+          <div className={`${styles.navigation__about__header__right}`}>
+            <p
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
+              Projects
+            </p>
+            <p>About</p>
+          </div>
+        </div>
+
+        <div className={styles.navigation__about__content}>
+          <p>content</p>
         </div>
       </div>
     </div>
