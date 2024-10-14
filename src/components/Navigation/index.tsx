@@ -64,8 +64,6 @@ const Navigation = () => {
 
   useGSAP(
     () => {
-      let tl = gsap.timeline({ paused: true });
-
       if (showModal) {
         gsap.to('.about__page', {
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',

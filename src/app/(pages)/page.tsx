@@ -12,7 +12,6 @@ import {
   useRef,
   useState,
 } from 'react';
-import { NavigationContext } from '@/contexts/NavigationContext';
 import { PROJECTS } from '@/constants/PROJECTS';
 import { POSITIONS } from '@/constants/POSITIONS';
 import { TransitionContext } from '@/contexts/TransitionContext';
