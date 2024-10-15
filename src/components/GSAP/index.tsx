@@ -4,6 +4,7 @@ import Tempus from '@darkroom.engineering/tempus';
 import gsap from 'gsap';
 import { useLayoutEffect } from 'react';
 import { ScrollTriggerConfig } from './ScrollTrigger';
+import CustomEase from 'gsap/CustomEase';
 
 export function GSAP({ scrollTrigger = false }) {
   useLayoutEffect(() => {
@@ -15,6 +16,9 @@ export function GSAP({ scrollTrigger = false }) {
     Tempus?.add((time: number) => {
       gsap.updateRoot(time / 1000);
     }, 0);
+
+    // register ease
+    gsap.registerPlugin(CustomEase);
   }, []);
 
   return scrollTrigger && <ScrollTriggerConfig />;
