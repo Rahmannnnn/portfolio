@@ -140,7 +140,7 @@ const Navigation = () => {
       switch (c) {
         case PAGE.HOME:
           cloneVars = {
-            duration: 2,
+            duration: 1.5,
             width: '100vw',
             height,
             top: '50vh',
@@ -149,7 +149,7 @@ const Navigation = () => {
           };
 
           cloneImageVars = {
-            duration: 2,
+            duration: 1.5,
             width,
             height,
             objectFit: 'cover',
@@ -160,10 +160,9 @@ const Navigation = () => {
         case PAGE.DETAIL:
           cloneVars = {
             position: 'fixed',
-            duration: 4.75,
+            duration: 1.5,
             width: '75px',
             height: '100px',
-            background: 'rgba(0,0,0,0.4)',
             margin: '20px',
             top: `${POSITIONS[index].top}%`,
             left: `${POSITIONS[index].left}%`,
@@ -171,7 +170,7 @@ const Navigation = () => {
           };
 
           cloneImageVars = {
-            duration: 2,
+            duration: 1.5,
             objectFit: 'cover',
             ease: 'power4.inOut',
             width: '100%',
@@ -182,7 +181,7 @@ const Navigation = () => {
 
       tl.to('.clone__image', cloneImageVars)
         .to('.clone', cloneVars, '<')
-        .to('.clone', { duration: 0.5 })
+        .to('.clone', { duration: c === PAGE.HOME ? 1 : 3.5 })
         .then(() => {
           setCloneElement(<></>);
           if (c === PAGE.HOME) {
