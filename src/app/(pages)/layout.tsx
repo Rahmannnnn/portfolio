@@ -74,7 +74,7 @@ export default function RootLayout({
     <html lang="en">
       <TransitionProvider>
         <NavigationProvider>
-          <body>
+          <body className={styles.body}>
             <div ref={dotRef} className={`${styles.cursor__dot}`}></div>
             <Navigation />
             {!loaderFinished ? <Preloader timeline={timeline} /> : children}
