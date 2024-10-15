@@ -79,6 +79,10 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
   };
 
   useEffect(() => {
+    window.scroll(0, 1);
+  }, []);
+
+  useEffect(() => {
     if (imageRefs[0]) {
       if (imageRefs[0].current) {
         const { top, left } = imageRefs[0].current.getBoundingClientRect();
@@ -116,7 +120,7 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     if (scrollableRef.current) {
       document.body.style.height = `calc(${
         scrollableRef.current.getBoundingClientRect().height
-      }px + 60vh)`;
+      }px + 70vh)`;
     }
   };
 
