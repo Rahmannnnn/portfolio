@@ -33,7 +33,7 @@ export const POSITIONS: { top: number; left: number }[] = [
   },
   {
     top: 64,
-    left: 40,
+    left: 35,
   },
   {
     top: 64,
