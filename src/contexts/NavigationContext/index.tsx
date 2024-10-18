@@ -109,7 +109,7 @@ const NavigationProvider = ({ children }: Props) => {
   const { timeline } = useContext(TransitionContext);
   const router = useRouter();
   const toPage = (destination: PAGE, link: string) => {
-    if (currentPage === destination) return;
+    if (currentPage === destination && destination !== PAGE.DETAIL) return;
 
     let duration = timeline.duration();
     if (duration) {

@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 
 import * as THREE from 'three';
 import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
-import { PROJECTS } from '@/constants/PROJECTS';
+import { Project, PROJECTS } from '@/constants/PROJECTS';
 
 let current = 0;
 let target = 0;
@@ -45,8 +45,15 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     }
   };
 
-  const { clone, setClone, createCloneElement, cloneBack, setCloneBack } =
-    useContext(NavigationContext);
+  const {
+    toPage,
+    clone,
+    setClone,
+    createCloneElement,
+    cloneBack,
+    setCloneBack,
+  } = useContext(NavigationContext);
+
   const getCloneBack = () => {
     if (cloneBack.index === -1 || !cloneBack.from.source) {
       // get index
@@ -367,6 +374,22 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     });
   }, []);
 
+  const [nextProject] = useState<Project>(() => {
+    let index = PROJECTS.findIndex(
+      (item) => item.project_slug === project_slug
+    );
+
+    if (index === -1) {
+      return PROJECTS[0];
+    }
+
+    return index === PROJECTS.length - 1 ? PROJECTS[0] : PROJECTS[index + 1];
+  });
+
+  const handleNextProject = () => {
+    toPage(PAGE.DETAIL, nextProject.project_slug);
+  };
+
   return (
     <div ref={mainRef} className={`main ${styles.main}`}>
       <div ref={scrollableRef} className={`scrollable ${styles.scrollable}`}>
@@ -381,6 +404,11 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
               </div>
             );
           })}
+        </div>
+
+        <div className={styles.next} onClick={handleNextProject}>
+          <p>Next Project</p>
+          <h1>{nextProject.title}</h1>
         </div>
       </div>
     </div>

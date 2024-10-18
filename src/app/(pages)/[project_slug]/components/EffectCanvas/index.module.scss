@@ -16,6 +16,7 @@
   flex-direction: column;
   gap: 10rem;
 }
+
 .container__image {
   margin: 0 auto;
   position: relative;
@@ -70,4 +71,37 @@
   left: 0;
   width: 100%;
   will-change: transform;
+}
+
+.next {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: url('../../../../../icons/arrow-next.svg'), default;
+  p {
+    font-size: 1.2rem;
+
+    @include size(md) {
+      font-size: 1.6rem;
+    }
+  }
+
+  h1 {
+    -webkit-text-stroke: 1px var(--foreground);
+    color: var(--background);
+    font-size: 3.2rem;
+    transition: 0.2s ease-in-out;
+    @include size(md) {
+      font-size: 4rem;
+    }
+  }
+
+  &:hover {
+    h1 {
+      -webkit-text-stroke: 1px var(--foreground);
+      color: var(--foreground);
+    }
+  }
 }
