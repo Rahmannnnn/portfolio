@@ -14,7 +14,8 @@ import Image from 'next/image';
 import arrowBack from '@/icons/arrow-back.svg';
 import { POSITIONS } from '@/constants/POSITIONS';
 import { PRELOADER_DURATION } from '@/constants/PRELOADER_DURATION';
-
+import { ReactLenis } from 'lenis/react';
+import { FiArrowUpRight } from 'react-icons/fi';
 const Navigation = () => {
   const {
     currentPage,
@@ -97,6 +98,20 @@ const Navigation = () => {
               pointerEvents: 'all',
             });
           },
+          onComplete: () => {
+            gsap.to('.intro', {
+              opacity: 1,
+              duration: 2,
+              ease: 'power4.inOut',
+              onComplete: () => {
+                gsap.to('.experience', {
+                  opacity: 1,
+                  duration: 2,
+                  ease: 'power4.inOut',
+                });
+              },
+            });
+          },
         });
       } else {
         gsap.to('.about__page', {
@@ -106,6 +121,16 @@ const Navigation = () => {
           onComplete: () => {
             gsap.set('.about__page', {
               pointerEvents: 'none',
+            });
+
+            gsap.set('.name', {
+              fontWeight: 400,
+            });
+            gsap.set('.intro', {
+              opacity: 0,
+            });
+            gsap.set('.experience', {
+              opacity: 0,
             });
           },
         });
@@ -264,34 +289,120 @@ const Navigation = () => {
         data-lenis-prevent
         className={`about__page ${styles.navigation__about}`}
       >
-        <div className={`${styles.navigation__about__header}`}>
-          <div
-            onClick={() => {
-              setShowModal(false);
-            }}
-            style={{
-              cursor: 'pointer',
-            }}
-            className={`${styles.navigation__about__header__left}`}
-          >
-            <h1 className="title">arif</h1>
-            <h1 className="title rahman">rahman</h1>
-          </div>
-          <div className={`${styles.navigation__about__header__right}`}>
-            <p
-              onClick={() => {
-                setShowModal(false);
-              }}
-            >
-              Projects
-            </p>
-            <p>About</p>
-          </div>
-        </div>
+        <ReactLenis root>
+          <div>
+            <div className={`${styles.navigation__about__header}`}>
+              <div
+                onClick={() => {
+                  setShowModal(false);
+                }}
+                style={{
+                  cursor: 'pointer',
+                }}
+                className={`${styles.navigation__about__header__left}`}
+              >
+                <h1 className="title">arif</h1>
+                <h1 className="title rahman">rahman</h1>
+              </div>
+              <div className={`${styles.navigation__about__header__right}`}>
+                <p
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                >
+                  Projects
+                </p>
+                <p>About</p>
+              </div>
+            </div>
 
-        <div className={styles.navigation__about__content}>
-          <p>content</p>
-        </div>
+            <div className={styles.navigation__about__content}>
+              <div className={`intro ${styles.intro}`}>
+                <p>Hi! &#128075;</p>
+                <p>
+                  I’m <span className="name">Arif Rahman Amrul Ghani</span>.
+                  <br /> Now focused on creating <u>beautiful website</u> and
+                  designing interfaces with <u>strong user experience</u>.
+                </p>
+                <p>
+                  Currently looking for a job as a <u>Frontend Engineer</u> or{' '}
+                  <u>UI/UX Designer</u>.
+                </p>
+              </div>
+              <div className={`experience ${styles.experience}`}>
+                <h1 className={styles.experience__title}>Working Experience</h1>
+                <div className={styles.experience__content}>
+                  <div className={styles.experience__content__item}>
+                    <h2>Shopee, Indonesia</h2>
+                    <h3>01 January - 31 December 2024</h3>
+                    <p>
+                      <b>Trainee Frontend Engineer Labs Bootcamp</b> - Lorem
+                      ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className={styles.experience__content__item}>
+                    <h2>Edukasystem, Indonesia</h2>
+                    <h3>01 January - 31 December 2024</h3>
+                    <p>
+                      <b>Trainee Frontend Engineer Labs Bootcamp</b> - Lorem
+                      ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className={styles.experience__content__item}></div>
+                </div>
+              </div>
+
+              <div className={`experience ${styles.education}`}>
+                <h1 className={styles.education__title}>Education</h1>
+                <div className={styles.education__content}>
+                  <div className={styles.education__content__item}>
+                    <h2>Bandung Institute of Technology, Indonesia</h2>
+                    <p>
+                      <b>Bachelor of Informatics Engineering</b>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`experience ${styles.touch}`}>
+                <h1 className={styles.touch__title}>Get In Touch</h1>
+                <div className={styles.touch__content}>
+                  <div className={styles.touch__content__item}>
+                    <p>
+                      <a href="mailto:arifingatrahman@gmail.com">Email</a>
+                    </p>
+                    <FiArrowUpRight />
+                  </div>
+                  <div className={styles.touch__content__item}>
+                    <p>
+                      <a
+                        href="https://www.linkedin.com/in/arif-rahman-amrul-ghani/"
+                        target="_blank"
+                      >
+                        LinkedIn
+                      </a>
+                    </p>
+                    <FiArrowUpRight />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ReactLenis>
       </div>
     </div>
   );

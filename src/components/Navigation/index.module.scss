@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
 
   width: 100%;
 
@@ -140,7 +140,6 @@
     background-color: var(--foreground);
     color: var(--background);
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-
     display: flex;
     flex-direction: column;
     gap: 5rem;
@@ -207,8 +206,163 @@
     }
 
     &__content {
+      width: 70vw;
+
+      @include size(md) {
+        width: 50vw;
+      }
+
+      margin: 0 auto;
       margin-top: 10rem;
-      background-color: blue;
+      display: flex;
+      flex-direction: column;
+      gap: 20rem;
+
+      .intro {
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+      }
+
+      p,
+      b,
+      u,
+      h1,
+      span {
+        font-size: 3rem;
+        font-weight: 400;
+
+        @include size(md) {
+          font-size: 4rem;
+        }
+      }
+
+      b {
+        font-weight: 700;
+      }
+
+      .experience,
+      .education {
+        &__title {
+          margin-bottom: 5rem;
+        }
+
+        &__content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 10rem;
+
+          &__item {
+            width: 75%;
+
+            h2 {
+              font-weight: 400;
+              font-size: 2rem;
+
+              @include size(md) {
+                font-size: 3rem;
+              }
+            }
+
+            h3 {
+              font-size: 1.2rem;
+
+              @include size(md) {
+                font-size: 1.6rem;
+              }
+              font-weight: 400;
+              margin-bottom: 2rem;
+              color: var(--grey);
+            }
+
+            p,
+            b {
+              font-size: 1.4rem;
+
+              @include size(md) {
+                font-size: 1.6rem;
+              }
+            }
+
+            p {
+              color: var(--grey);
+            }
+
+            b {
+              color: var(--background);
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      .touch {
+        margin-bottom: 10rem;
+        &__title {
+          margin-bottom: 5rem;
+        }
+
+        &__content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 1rem;
+
+          &__item {
+            width: 75%;
+            display: flex;
+            gap: 0.5rem;
+            position: relative;
+
+            p,
+            a {
+              font-size: 1.4rem;
+              cursor: pointer;
+
+              @include size(md) {
+                font-size: 1.6rem;
+              }
+
+              &:after {
+                content: '';
+                position: absolute;
+                background-color: var(--background);
+                height: 1px;
+                width: 0;
+                left: 0;
+                bottom: 0;
+                transition: 0.2s;
+              }
+
+              &:hover {
+                &::after {
+                  width: 100%;
+                }
+
+                @include size(md) {
+                  & ~ svg {
+                    transition: 0.2s ease-in-out;
+                    scale: 1;
+                    rotate: 0deg;
+                  }
+                }
+              }
+            }
+
+            svg {
+              font-size: 1.2rem;
+
+              @include size(md) {
+                font-size: 1.75rem;
+                scale: 0;
+                transition: 0.2s ease-in-out;
+                rotate: -90deg;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

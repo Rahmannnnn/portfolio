@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import styles from './index.module.scss';
 import { FiArrowUpRight } from 'react-icons/fi';
 import gsap from 'gsap';
 import { PRELOADER_DURATION } from '@/constants/PRELOADER_DURATION';
+import { NavigationContext } from '@/contexts/NavigationContext';
 
 const Footer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,9 +53,32 @@ const Footer = () => {
     { scope: containerRef }
   );
 
+  const { showModal } = useContext(NavigationContext);
+  useGSAP(
+    () => {
+      if (showModal) {
+        gsap.to('.content', {
+          opacity: 0,
+          duration: 1,
+        });
+      } else {
+        gsap.set('.content', {
+          opacity: 1,
+        });
+      }
+    },
+    {
+      dependencies: [showModal],
+      scope: containerRef,
+    }
+  );
+
   return (
     <div className={styles.footer} ref={containerRef}>
-      <div className={`content ${styles.footer__content}`}>
+      <div
+        className={`content ${styles.footer__content}
+        }`}
+      >
         <div className={`left ${styles.footer__content__left}`}>
           <a href="https://read.cv/arifrahman" target="_blank">
             read.cv
