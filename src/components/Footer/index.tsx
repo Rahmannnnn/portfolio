@@ -81,7 +81,7 @@ const Footer = () => {
       >
         <div className={`left ${styles.footer__content__left}`}>
           <a href="https://read.cv/arifrahman" target="_blank">
-            read.cv
+            Read.cv
             <span>
               <FiArrowUpRight />
             </span>
@@ -100,7 +100,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/arif-rahman-amrul-ghani/"
             target="_blank"
           >
-            Linkedin
+            LinkedIn
             <span>
               <FiArrowUpRight />
             </span>

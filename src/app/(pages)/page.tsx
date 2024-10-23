@@ -17,6 +17,7 @@ import { PROJECTS } from '@/constants/PROJECTS';
 import { POSITIONS } from '@/constants/POSITIONS';
 import { TransitionContext } from '@/contexts/TransitionContext';
 import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
+import Image from 'next/image';
 
 export default function Home() {
   const { clone, setClone, cloneBack, setCloneBack } =
@@ -62,7 +63,7 @@ export default function Home() {
       });
 
       gsap.set('.home__gallery__image__text', {
-        opacity: 1,
+        opacity: 0,
         zIndex: -1,
         position: 'absolute',
       });
@@ -238,7 +239,14 @@ export default function Home() {
                 <p className={`home__gallery__image__text ${styles.text}`}>{`[${
                   index + 1
                 }]`}</p>
-                <img src={image} alt="" />
+                <Image
+                  loading="lazy"
+                  // priority
+                  width={100}
+                  height={100}
+                  src={image}
+                  alt=""
+                />
               </div>
             );
           })}
