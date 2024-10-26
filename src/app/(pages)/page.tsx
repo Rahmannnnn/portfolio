@@ -239,14 +239,7 @@ export default function Home() {
                 <p className={`home__gallery__image__text ${styles.text}`}>{`[${
                   index + 1
                 }]`}</p>
-                <Image
-                  loading="lazy"
-                  // priority
-                  width={100}
-                  height={100}
-                  src={image}
-                  alt=""
-                />
+                <img src={image} alt="" />
               </div>
             );
           })}

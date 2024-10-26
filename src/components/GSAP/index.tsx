@@ -4,7 +4,7 @@ import Tempus from '@darkroom.engineering/tempus';
 import gsap from 'gsap';
 import { useLayoutEffect } from 'react';
 import { ScrollTriggerConfig } from './ScrollTrigger';
-import CustomEase from 'gsap/CustomEase';
+import { CustomEase } from 'gsap/all';
 
 export function GSAP({ scrollTrigger = false }) {
   useLayoutEffect(() => {
