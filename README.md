@@ -1,3 +1,5 @@
+👻 WORK IN PROGRESS 👻
+
 ## Introduction
 
 This is my responsive personal portfolio website, built with [Next.js](https://nextjs.org).
