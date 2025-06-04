@@ -17,11 +17,9 @@ import { PROJECTS } from '@/constants/PROJECTS';
 import { POSITIONS } from '@/constants/POSITIONS';
 import { TransitionContext } from '@/contexts/TransitionContext';
 import { NavigationContext, PAGE } from '@/contexts/NavigationContext';
-import Image from 'next/image';
 
 export default function Home() {
-  const { clone, setClone, cloneBack, setCloneBack } =
-    useContext(NavigationContext);
+  const { clone, setClone } = useContext(NavigationContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const { toPage } = useContext(NavigationContext);
 
@@ -58,7 +56,6 @@ export default function Home() {
       gsap.set('.home__gallery__image', {
         top: '50%',
         left: '50%',
-        opacity: (i) => (i === cloneBack.index ? '0' : '1'),
         transform: 'translate(-50%, -50%) scale(0)',
       });
 
@@ -190,27 +187,6 @@ export default function Home() {
       }
     }
   }, [clone]);
-
-  useEffect(() => {
-    if (cloneBack.index !== -1) {
-      const ref = projectRefs[cloneBack.index];
-      if (ref.current) {
-        const { width, height } = ref.current.getBoundingClientRect();
-        const project = PROJECTS[cloneBack.index];
-        const { top, left } = POSITIONS[cloneBack.index];
-        setCloneBack({
-          ...cloneBack,
-          to: {
-            width,
-            height,
-            top,
-            left,
-            source: project.image,
-          },
-        });
-      }
-    }
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 1);

@@ -1,3 +1,4 @@
+// TODO: Add real content
 export interface IProjectDetail {
   project_slug: string;
   title: string;

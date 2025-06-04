@@ -1,0 +1,18 @@
+.content {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+
+  &__right {
+    flex-direction: row-reverse;
+  }
+
+  &__left {
+    flex-direction: row;
+  }
+
+  &__center {
+    flex-direction: column;
+  }
+}

@@ -80,14 +80,6 @@ const Footer = () => {
         }`}
       >
         <div className={`left ${styles.footer__content__left}`}>
-          <a href="https://read.cv/arifrahman" target="_blank">
-            Read.cv
-            <span>
-              <FiArrowUpRight />
-            </span>
-          </a>
-        </div>
-        <div className={`mid ${styles.footer__content__mid}`}>
           <a href="mailto:arifingatrahman@gmail.com">
             Email
             <span>
@@ -95,6 +87,14 @@ const Footer = () => {
             </span>
           </a>
         </div>
+        {/* <div className={`mid ${styles.footer__content__mid}`}>
+          <a href="mailto:arifingatrahman@gmail.com">
+            Email
+            <span>
+              <FiArrowUpRight />
+            </span>
+          </a>
+        </div> */}
         <div className={`right ${styles.footer__content__right}`}>
           <a
             href="https://www.linkedin.com/in/arif-rahman-amrul-ghani/"

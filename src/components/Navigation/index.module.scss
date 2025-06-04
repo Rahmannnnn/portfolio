@@ -278,14 +278,14 @@
 
             p,
             b {
-              font-size: 1.4rem;
-
+              font-size: 1.5rem;
               @include size(md) {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
               }
             }
 
             p {
+              font-family: 'Roboto', sans-serif;
               color: var(--grey);
             }
 

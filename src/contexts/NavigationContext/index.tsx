@@ -43,9 +43,6 @@ type NavigationContextType = {
 
   clone: IClone;
   setClone: (c: IClone) => void;
-
-  cloneBack: IClone;
-  setCloneBack: (c: IClone) => void;
 };
 
 export const INITIAL_CLONE_IMAGE: CloneImageInterface = {
@@ -76,8 +73,6 @@ const INITIAL_CONTEXT: NavigationContextType = {
 
   clone: INITIAL_CLONE,
   setClone: () => {},
-  cloneBack: INITIAL_CLONE,
-  setCloneBack: () => {},
 };
 
 const NavigationContext = createContext<NavigationContextType>(INITIAL_CONTEXT);
@@ -91,7 +86,6 @@ const NavigationProvider = ({ children }: Props) => {
   const [currentPage, setCurrentPage] = useState<PAGE>(PAGE.HOME);
 
   const [clone, setClone] = useState<IClone>(INITIAL_CLONE);
-  const [cloneBack, setCloneBack] = useState<IClone>(INITIAL_CLONE);
 
   const pathname = usePathname();
   const getCurrentPage = () => {
@@ -126,8 +120,7 @@ const NavigationProvider = ({ children }: Props) => {
 
   const [cloneElement, setCloneElement] = useState<JSX.Element>(<></>);
   const createCloneElement = (c: PAGE) => {
-    const from = c === PAGE.HOME ? clone.from : cloneBack.from;
-    const { left, top, width, height, source } = from;
+    const { left, top, width, height, source } = clone.from;
     if (source) {
       const style: CSSProperties = {
         position: 'fixed',
@@ -177,9 +170,6 @@ const NavigationProvider = ({ children }: Props) => {
 
         clone,
         setClone,
-
-        cloneBack,
-        setCloneBack,
       }}
     >
       {children}

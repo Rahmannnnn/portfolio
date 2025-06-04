@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -27,9 +27,6 @@ const Navigation = () => {
 
     clone,
     setClone,
-
-    cloneBack,
-    setCloneBack,
   } = useContext(NavigationContext);
 
   CustomEase.create(
@@ -143,18 +140,13 @@ const Navigation = () => {
   );
 
   const handleBack = () => {
-    const { from } = cloneBack;
-    if (from.source) {
-      createCloneElement(PAGE.DETAIL);
-    }
-
     toPage(PAGE.HOME, '/');
   };
 
   const { contextSafe } = useGSAP({ scope: containerRef });
   const handleGSAPClone = contextSafe((c: PAGE) => {
-    const to = c === PAGE.HOME ? clone.to : cloneBack.to;
-    const index = c === PAGE.HOME ? clone.index : cloneBack.index;
+    const to = clone.to;
+    const index = clone.index;
 
     const { width, height, source } = to;
     if (source) {
@@ -181,39 +173,14 @@ const Navigation = () => {
             ease: 'power4.inOut',
           };
           break;
-
-        case PAGE.DETAIL:
-          cloneVars = {
-            position: 'fixed',
-            duration: 1.5,
-            width: '75px',
-            height: '100px',
-            margin: '20px',
-            top: `${POSITIONS[index].top}%`,
-            left: `${POSITIONS[index].left}%`,
-            ease: 'power4.inOut',
-          };
-
-          cloneImageVars = {
-            duration: 1.5,
-            objectFit: 'cover',
-            ease: 'power4.inOut',
-            width: '100%',
-            height: '100%',
-          };
-          break;
       }
 
       tl.to('.clone__image', cloneImageVars)
         .to('.clone', cloneVars, '<')
-        .to('.clone', { duration: c === PAGE.HOME ? 1 : 3.5 })
+        .to('.clone', { duration: 1 })
         .then(() => {
           setCloneElement(<></>);
-          if (c === PAGE.HOME) {
-            setClone(INITIAL_CLONE);
-          } else {
-            setCloneBack(INITIAL_CLONE);
-          }
+          setClone(INITIAL_CLONE);
         });
     }
   });
@@ -230,13 +197,6 @@ const Navigation = () => {
       handleGSAPClone(PAGE.HOME);
     }
   }, [clone]);
-
-  useEffect(() => {
-    const { to } = cloneBack;
-    if (to.source && cloneElement !== <></>) {
-      handleGSAPClone(PAGE.DETAIL);
-    }
-  }, [cloneBack]);
 
   return (
     <div className={styles.navigation} ref={containerRef}>
@@ -333,33 +293,46 @@ const Navigation = () => {
                 <h1 className={styles.experience__title}>Working Experience</h1>
                 <div className={styles.experience__content}>
                   <div className={styles.experience__content__item}>
-                    <h2>Shopee, Indonesia</h2>
-                    <h3>01 January - 31 December 2024</h3>
+                    <h2>Sea Labs Indonesia</h2>
+                    <h3>PT. Shopee International Indonesia</h3>
                     <p>
-                      <b>Trainee Frontend Engineer Labs Bootcamp</b> - Lorem
-                      ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                      <b>Trainee Frontend Engineer (Aug - Dec 2023)</b>
+                    </p>
+                    <p>
+                      Participate a 4-month program called Labs Bootcamp Batch 1
+                      as a Frontend Engineer Trainee, an intensive full-time
+                      learning program led by expert trainer from Sea Labs
+                      Indonesia. I Learned and completed assignments on software
+                      engineering topics (especially frontend) about data
+                      structures and algorithms, Golang, Javascript, Typescript,
+                      ReactJs, NextJs, web optimization, React Native, Unit
+                      Testing. The program ended with create a marketplace
+                      website that implements buyer and seller pages, such as
+                      purchasing goods, stock management, shipping, product
+                      variation, product review, cart and transaction, etc.,
+                      collaborated with backend engineers stream and finished
+                      within 1 month.
                     </p>
                   </div>
                   <div className={styles.experience__content__item}>
                     <h2>Edukasystem, Indonesia</h2>
-                    <h3>01 January - 31 December 2024</h3>
+                    <h3>PT. Eduka Teknologi Indonesia</h3>
                     <p>
-                      <b>Trainee Frontend Engineer Labs Bootcamp</b> - Lorem
-                      ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                      <b>Frontend Engineer (Oct 2021 - Apr 2022)</b>
+                    </p>
+                    <p>
+                      Implement & maintain code standards for 4 Edukasystem
+                      websites using VueJs and Initiate unit testing for main
+                      product and increase test coverage from 0% to above 80%.
+                    </p>
+                    <h3> </h3>
+
+                    <p>
+                      <b>Frontend Engineer Intern (Jun 2021 - Sep 2021)</b>
+                    </p>
+                    <p>
+                      Implement & maintain code standards Edukasystem main
+                      product websites using VueJs
                     </p>
                   </div>
                   <div className={styles.experience__content__item}></div>
@@ -373,6 +346,11 @@ const Navigation = () => {
                     <h2>Bandung Institute of Technology, Indonesia</h2>
                     <p>
                       <b>Bachelor of Informatics Engineering</b>
+                    </p>
+                    <p>
+                      Course: Algorithm and Data Structure, OOP, Database
+                      Management, Human Computer Interaction, Machine Learning,
+                      Information System, Application Development, etc
                     </p>
                   </div>
                 </div>

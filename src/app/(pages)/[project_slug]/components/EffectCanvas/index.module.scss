@@ -44,8 +44,8 @@
   }
 
   img {
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    height: auto;
     object-fit: cover;
 
     @include size(md) {
@@ -104,4 +104,13 @@
       color: var(--foreground);
     }
   }
+}
+
+.contents {
+  @include size(md) {
+    width: 100vw;
+    padding: 0 15vw;
+  }
+  margin: 0 auto;
+  background-color: red;
 }

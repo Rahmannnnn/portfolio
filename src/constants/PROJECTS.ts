@@ -1,3 +1,4 @@
+// TODO: Add real content
 export interface Project {
   image: string;
   title: string;

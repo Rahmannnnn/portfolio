@@ -45,45 +45,7 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     }
   };
 
-  const {
-    toPage,
-    clone,
-    setClone,
-    createCloneElement,
-    cloneBack,
-    setCloneBack,
-  } = useContext(NavigationContext);
-
-  const getCloneBack = () => {
-    if (cloneBack.index === -1 || !cloneBack.from.source) {
-      // get index
-      let index = PROJECTS.findIndex(
-        (item) => item.project_slug === project_slug
-      );
-
-      // get from
-      if (index !== -1) {
-        const ref = imageRefs[0];
-        if (ref.current) {
-          const { width, height, top, left } =
-            ref.current.getBoundingClientRect();
-          const { src } = ref.current;
-
-          setCloneBack({
-            ...cloneBack,
-            index,
-            from: {
-              width,
-              height,
-              top,
-              left,
-              source: src,
-            },
-          });
-        }
-      }
-    }
-  };
+  const { toPage, clone, setClone } = useContext(NavigationContext);
 
   useEffect(() => {
     window.scroll(0, 1);
@@ -109,21 +71,7 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
     }
   }, [imageRefs[0].current]);
 
-  useEffect(() => {
-    getCloneBack();
-
-    window.addEventListener('popstate', () => {
-      const { from } = cloneBack;
-      if (from.source) {
-        createCloneElement(PAGE.DETAIL);
-      }
-    });
-
-    return () => window.removeEventListener('popstate', () => {});
-  }, [cloneBack]);
-
   const init = () => {
-    getCloneBack();
     if (scrollableRef.current) {
       document.body.style.height = `calc(${
         scrollableRef.current.getBoundingClientRect().height

@@ -22,7 +22,7 @@ const Preloader = ({ timeline }: Props) => {
       return;
     }
 
-    let newValue = counter + Math.floor(Math.random() * 10);
+    let newValue = counter + Math.floor(Math.random() * 50);
     setCounter((prev) => {
       if (newValue + prev > 100) {
         return 100;
@@ -46,7 +46,7 @@ const Preloader = ({ timeline }: Props) => {
         gsap.to('.preloader', {
           // do nothing, wait the counter
           opacity: 1,
-          duration: 5,
+          duration: 3,
         })
       );
 
