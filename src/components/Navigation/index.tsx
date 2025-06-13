@@ -12,7 +12,6 @@ import {
 import { CustomEase } from 'gsap/all';
 import Image from 'next/image';
 import arrowBack from '@/icons/arrow-back.svg';
-import { POSITIONS } from '@/constants/POSITIONS';
 import { PRELOADER_DURATION } from '@/constants/PRELOADER_DURATION';
 import { ReactLenis } from 'lenis/react';
 import { FiArrowUpRight } from 'react-icons/fi';
@@ -146,7 +145,7 @@ const Navigation = () => {
   const { contextSafe } = useGSAP({ scope: containerRef });
   const handleGSAPClone = contextSafe((c: PAGE) => {
     const to = clone.to;
-    const index = clone.index;
+    // const index = clone.index;
 
     const { width, height, source } = to;
     if (source) {
@@ -187,7 +186,7 @@ const Navigation = () => {
 
   useEffect(() => {
     if (clone.from.source) {
-      createCloneElement(PAGE.HOME);
+      createCloneElement();
     }
   }, [clone]);
 

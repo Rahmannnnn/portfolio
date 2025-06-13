@@ -41,7 +41,7 @@
     transition: 0.2s ease-in-out;
 
     h1 {
-      font-size: 5rem;
+      font-size: 2rem;
     }
   }
 }
@@ -58,9 +58,11 @@
     align-items: center;
     padding: 0 50px;
     gap: 50px;
+    flex-direction: column;
 
     @include size(md) {
       padding: 0 100px;
+      flex-direction: row;
       gap: 100px;
     }
   }

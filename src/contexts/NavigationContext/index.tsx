@@ -39,7 +39,7 @@ type NavigationContextType = {
 
   cloneElement: JSX.Element;
   setCloneElement: (c: JSX.Element) => void;
-  createCloneElement: (c: PAGE) => void;
+  createCloneElement: () => void;
 
   clone: IClone;
   setClone: (c: IClone) => void;
@@ -69,7 +69,7 @@ const INITIAL_CONTEXT: NavigationContextType = {
   cloneElement: <></>,
 
   setCloneElement: (c: JSX.Element) => {},
-  createCloneElement: (c: PAGE) => {},
+  createCloneElement: () => {},
 
   clone: INITIAL_CLONE,
   setClone: () => {},
@@ -119,7 +119,7 @@ const NavigationProvider = ({ children }: Props) => {
   };
 
   const [cloneElement, setCloneElement] = useState<JSX.Element>(<></>);
-  const createCloneElement = (c: PAGE) => {
+  const createCloneElement = () => {
     const { left, top, width, height, source } = clone.from;
     if (source) {
       const style: CSSProperties = {

@@ -114,6 +114,14 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
           ease: 'power4.inOut',
         })
       );
+      timeline.add(
+        gsap.to('.container__image', {
+          opacity: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+        }),
+        '<'
+      );
     },
     { scope: containerRef }
   );
@@ -166,7 +174,10 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
               </div>
             </div>
           </div>
-          <div ref={imageRef} className={`${styles.container__image}`}>
+          <div
+            ref={imageRef}
+            className={`container__image ${styles.container__image}`}
+          >
             {projectDetail.project_slug && (
               <EffectCanvas
                 projectDetail={projectDetail}
