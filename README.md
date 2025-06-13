@@ -34,4 +34,4 @@ To get started, just clone the repository and install the dependencies with pnpm
 
 ## Deployment
 
-You can view the result of this project on the following [link](https://arifrahman-portfolio.vercel.app/).
+Work In Progress
