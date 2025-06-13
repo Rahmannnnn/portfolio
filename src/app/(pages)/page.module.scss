@@ -45,3 +45,75 @@
     }
   }
 }
+
+.slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &__wrapper {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    gap: 50px;
+
+    @include size(md) {
+      padding: 0 100px;
+      gap: 100px;
+    }
+  }
+}
+
+.slide {
+  overflow: hidden;
+  cursor: pointer;
+  width: 300px;
+  height: 300px;
+
+  @include size(md) {
+    width: 400px;
+    height: 400px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.marker__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  height: 100vh;
+}
+
+.marker {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background-color: var(--foreground);
+
+  ::after {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 82.5%;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--background);
+    border: 1px solid black;
+    border-radius: 100%;
+  }
+}
+
+.active__slide {
+  position: absolute;
+  top: 82.5%;
+  left: 20px;
+}
