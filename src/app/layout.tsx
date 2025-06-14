@@ -24,7 +24,7 @@ const Layout = ({
           name="keywords"
           content="Frontend Engineer,UI/UX Designer,Next.js,React,JavaScript"
         />
-        <title>Arif Rahman Amrul Ghani</title>
+        <title>Arif Rahman — Frontend Engineer</title>
       </head>
       <body
         className={`

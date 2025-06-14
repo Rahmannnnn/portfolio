@@ -57,12 +57,12 @@
     visibility: hidden;
   }
 
-  &:nth-child(1) {
-    img {
-      width: 100%;
-      height: auto;
-    }
+  img {
+    width: 100%;
+    height: auto;
   }
+  // &:nth-child(1) {
+  // }
 }
 
 .scrollable {

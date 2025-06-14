@@ -251,7 +251,7 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
           varying vec2 vUv;
           
           vec3 rgbShift(sampler2D textureImage, vec2 uv, vec2 offset) {
-            float r = texture2D(textureImage,uv + offset).r;
+            float r = texture2D(textureImage,uv).r;
             vec2 gb = texture2D(textureImage,uv).gb;
             return vec3(r,gb);
           }
