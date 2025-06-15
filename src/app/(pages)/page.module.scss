@@ -20,13 +20,6 @@
         object-fit: cover;
         cursor: pointer;
       }
-
-      p {
-        font-size: 1.2rem;
-        @include size(md) {
-          font-size: 1.4rem;
-        }
-      }
     }
   }
 
@@ -41,7 +34,7 @@
     transition: 0.2s ease-in-out;
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
   }
 }

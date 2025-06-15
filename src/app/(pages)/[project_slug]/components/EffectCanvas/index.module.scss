@@ -81,20 +81,20 @@
   align-items: center;
   cursor: url('../../../../../icons/arrow-next.svg'), default;
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     @include size(md) {
-      font-size: 1.6rem;
+      font-size: 1.2rem;
     }
   }
 
   h1 {
     -webkit-text-stroke: 1px var(--foreground);
     color: var(--background);
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     transition: 0.2s ease-in-out;
     @include size(md) {
-      font-size: 4rem;
+      font-size: 3.6rem;
     }
   }
 

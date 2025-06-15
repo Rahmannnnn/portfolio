@@ -14,10 +14,10 @@
     overflow: hidden;
 
     p {
-      font-size: 1.2rem;
+      font-size: 1rem;
 
       @include size(md) {
-        font-size: 1.6rem;
+        font-size: 1.2rem;
       }
     }
   }
@@ -38,10 +38,10 @@
       bottom: 0;
       left: 100%;
       font-weight: 400;
-      font-size: 20rem;
+      font-size: 14rem;
 
       @include size(md) {
-        font-size: 24rem;
+        font-size: 20rem;
       }
     }
   }

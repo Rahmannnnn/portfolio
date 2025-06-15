@@ -20,14 +20,14 @@
 
   a {
     position: relative;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: 0.2s ease-in-out;
     font-weight: 600;
     // text-transform: lowercase;
     cursor: pointer;
 
     @include size(md) {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
     }
 
     &:after {
@@ -69,7 +69,7 @@
       font-size: 1.2rem;
 
       @include size(md) {
-        font-size: 1.75rem;
+        font-size: 1.65rem;
         scale: 0;
         transition: 0.2s ease-in-out;
         rotate: -90deg;
