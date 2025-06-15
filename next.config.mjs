@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  distDir: 'dist',
+
   sassOptions: {
     includePaths: ['styles'],
     prependData: `
@@ -8,6 +10,7 @@ const nextConfig = {
   `,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

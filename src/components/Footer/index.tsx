@@ -16,22 +16,11 @@ const Footer = () => {
         opacity: 0,
       });
 
-      gsap.set('.mid', {
-        opacity: 0,
-      });
-
       gsap.set('.right', {
         opacity: 0,
       });
 
       gsap.to('.left', {
-        opacity: 1,
-        duration: 2,
-        delay: PRELOADER_DURATION + 3,
-        ease: 'power4.inOut',
-      });
-
-      gsap.to('.mid', {
         opacity: 1,
         duration: 2,
         delay: PRELOADER_DURATION + 3,

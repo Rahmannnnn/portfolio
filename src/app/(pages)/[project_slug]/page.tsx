@@ -1,13 +1,6 @@
 'use client';
 
-import { SiNextdotjs } from 'react-icons/si';
-import React, {
-  ReactNode,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
 import { IProjectDetail, PROJECT_DETAILS } from '@/constants/PROJECT_DETAIL';
 import { notFound } from 'next/navigation';
