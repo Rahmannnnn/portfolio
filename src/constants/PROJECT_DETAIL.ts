@@ -44,7 +44,7 @@ export const PROJECT_DETAILS: IProjectDetail[] = [
     title: 'Squaredle Solver',
     start_date: new Date(),
     end_date: new Date(),
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    overview: `<p>Squaredle Solver — a web-based solver tool for the word puzzle game Squaredle.app, developed as a personal side project. Users can input the puzzle grid and letter combinations to automatically generate all possible valid words.</p>`,
     year: '2024',
     images: [
       'squaredle/squaredle1.png',
@@ -65,7 +65,7 @@ export const PROJECT_DETAILS: IProjectDetail[] = [
     title: 'Kboom',
     start_date: new Date(),
     end_date: new Date(),
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    overview: `<p>Kboom — a web-based ticketing platform for K-pop concerts in Indonesia, built as a practice project during Labs Bootcamp. It allows users to browse upcoming events, view details, and order tickets through a responsive and user-friendly interface.</p>`,
     year: '2023',
     images: [
       'kboom/kboom1.png',
@@ -88,17 +88,17 @@ export const PROJECT_DETAILS: IProjectDetail[] = [
     title: 'ITB Student Service App',
     start_date: new Date(),
     end_date: new Date(),
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    overview: `<p>I designed a UI/UX system that integrates various student services at ITB (Institut Teknologi Bandung) as the main focus of my undergraduate thesis.</p><p>The goal was to create a unified and user-friendly interface that streamlines access to academic, administrative, and support services for students. This project emphasized user-centered design principles, iterative testing, and service integration to improve overall usability and experience.</p>`,
     year: '2025',
     images: ['itb/itb1.png', 'itb/itb2.png', 'itb/itb3.png'],
     tools: [ICONS.FIGMA, ICONS.GOOGLEFORMS],
   },
   {
     project_slug: 'matoa',
-    title: 'Matoa',
+    title: 'Matoa Redesign',
     start_date: new Date(),
     end_date: new Date(),
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    overview: `<p>Matoa is an Indonesian lifestyle brand based in Bandung, renowned for its premium wooden watches.</p><p>I implemented the Matoa website redesign (inspired by Matoa Redesign on Figma Community) into a functional frontend. This project allowed me to practice translating high-fidelity UI designs into responsive and visually consistent web interfaces.</p>`,
     year: '2023',
     images: [
       'matoa/matoa1.png',
