@@ -145,7 +145,12 @@ const NavigationProvider = ({ children }: Props) => {
 
       const element = (
         <div style={style} className={`clone`}>
-          <img style={styleImg} src={source} className="clone__image" alt="" />
+          <img
+            style={styleImg}
+            src={`assets/${source}`}
+            className="clone__image"
+            alt=""
+          />
         </div>
       );
 

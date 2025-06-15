@@ -114,3 +114,17 @@
   margin: 0 auto;
   background-color: red;
 }
+
+.redirect {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 2.5rem;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-color: blue;
+  }
+}

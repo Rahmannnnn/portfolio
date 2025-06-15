@@ -1,0 +1,16 @@
+export enum ICONS {
+  REACTJS,
+  NEXTJS,
+  HTML,
+  CSS,
+  SCSS,
+  VUEJS,
+  FIGMA,
+  JEST,
+  JAVASCRIPT,
+  GOLANG,
+  VSCODE,
+  POSTMAN,
+  TYPESCRIPT,
+  GOOGLEFORMS,
+}

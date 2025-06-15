@@ -1,6 +1,13 @@
 'use client';
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { SiNextdotjs } from 'react-icons/si';
+import React, {
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styles from './index.module.scss';
 import { IProjectDetail, PROJECT_DETAILS } from '@/constants/PROJECT_DETAIL';
 import { notFound } from 'next/navigation';
@@ -10,6 +17,9 @@ import { TransitionContext } from '@/contexts/TransitionContext';
 import { Wrapper } from '@/components/Wrapper';
 import EffectCanvas from './components/EffectCanvas';
 import gsap from 'gsap';
+import { HTMLStringToReact } from '@/utils/text';
+import { getIcon } from '@/utils/icons';
+
 const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
   let index = PROJECT_DETAILS.findIndex(
     (item) => item.project_slug === params.project_slug
@@ -31,6 +41,7 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
     end_date: new Date(),
     overview: '',
     images: [],
+    tools: [],
   });
 
   useEffect(() => {
@@ -148,7 +159,14 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
                 </h1>
               </div>
               <div className={styles.year}>
-                <p className="project__detail__title__year">{`[${projectDetail.year}]`}</p>
+                <div className="project__detail__title__year">
+                  <div className={styles.tools}>
+                    {projectDetail.tools.map((item) => {
+                      return getIcon(item);
+                    })}
+                  </div>
+                  <p>{`[${projectDetail.year}]`}</p>
+                </div>
               </div>
             </div>
             <div className={styles.container__content__right}>
@@ -166,10 +184,11 @@ const ProjectDetail = ({ params }: { params: { project_slug: string } }) => {
                   style={{
                     overflow: 'hidden',
                   }}
+                  className={styles.overview__desc}
                 >
-                  <p className="project__detail__title__year">
-                    {projectDetail.overview}
-                  </p>
+                  <div className="project__detail__title__year">
+                    {HTMLStringToReact(projectDetail.overview)}
+                  </div>
                 </div>
               </div>
             </div>

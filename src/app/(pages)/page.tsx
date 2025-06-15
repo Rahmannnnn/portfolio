@@ -214,7 +214,7 @@ export default function Home() {
                   top: `${POSITIONS[index].top}%`,
                 }}
               >
-                <img src={image} alt="" />
+                <img src={`assets/${image}`} alt="" />
               </div>
             );
           })}

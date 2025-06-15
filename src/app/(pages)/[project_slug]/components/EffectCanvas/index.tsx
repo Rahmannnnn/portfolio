@@ -348,11 +348,17 @@ const EffectCanvas = ({ project_slug, projectDetail }: Props) => {
                 key={`mesh-item-${index}`}
                 className={`${styles.container__image}`}
               >
-                <img ref={imageRefs[index]} src={item} alt="" />
+                <img ref={imageRefs[index]} src={`assets/${item}`} alt="" />
               </div>
             );
           })}
         </div>
+
+        {/* TODO: Add Link to Website */}
+        {/* 
+        <div className={styles.redirect}>
+          <p>Visit Website</p>
+        </div> */}
 
         <div className={styles.next} onClick={handleNextProject}>
           <p>Next Project</p>

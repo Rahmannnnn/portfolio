@@ -9,7 +9,7 @@
     height: 40vh;
     display: flex;
     flex-direction: column;
-    gap: 10vh;
+    gap: 8vh;
     justify-content: space-between;
     width: 100%;
     max-width: var(--max-width);
@@ -109,4 +109,35 @@
 
 .year {
   overflow: hidden;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+.tools {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  svg {
+    font-size: 2rem;
+
+    @include size(md) {
+      font-size: 2.8rem;
+    }
+  }
+}
+.overview {
+  &__desc {
+    font-family: 'Roboto', sans-serif;
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+
+      @include size(md) {
+        font-size: 1.4rem;
+      }
+    }
+  }
 }
