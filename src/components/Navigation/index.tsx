@@ -320,9 +320,11 @@ const Navigation = () => {
                       <b>Frontend Engineer (Oct 2021 - Apr 2022)</b>
                     </p>
                     <p>
-                      Implement & maintain code standards for 4 Edukasystem
-                      websites using VueJs and Initiate unit testing for main
-                      product and increase test coverage from 0% to above 80%.
+                      Implemented and maintained frontend architecture for 4
+                      Edukasystem websites. I also developed a new Study Manager
+                      feature, including a calendar built from scratch that
+                      allows users to manage study schedules, set timers, and
+                      use the Pomodoro technique.
                     </p>
                     <h3> </h3>
 
@@ -330,8 +332,9 @@ const Navigation = () => {
                       <b>Frontend Engineer Intern (Jun 2021 - Sep 2021)</b>
                     </p>
                     <p>
-                      Implement & maintain code standards Edukasystem main
-                      product websites using VueJs
+                      Built and integrated frontend UI components using Vue.js
+                      to support product features and team development
+                      workflows.
                     </p>
                   </div>
                   <div className={styles.experience__content__item}></div>
